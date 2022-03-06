@@ -1,40 +1,29 @@
 // { Driver Code Starts
-// Initial Template for C
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
 
-#include <stdio.h>
-#include<algorithm>
-
-struct pair {
-    long long int min;
-    long long int max;
-};
-
-struct pair getMinMax(long long int arr[], long long int n) ;
+pair<long long, long long> getMinMax(long long a[], int n) ;
 
 int main() {
-    long long int t, n, a[100002], i;
-    struct pair minmax;
-
-    scanf("%lld", &t);
+    int t;
+    cin >> t;
     while (t--) {
-        scanf("%lld", &n);
+        int n;
+        cin >> n;
+        ll a[n];
+        for (int i = 0; i < n; i++) cin >> a[i];
 
-        for (i = 0; i < n; i++) scanf("%lld", &a[i]);
-        minmax = getMinMax(a, n);
-        printf("%lld %lld\n", minmax.min, minmax.max);
+        pair<ll, ll> pp = getMinMax(a, n);
+
+        cout << pp.first << " " << pp.second << endl;
     }
     return 0;
 }// } Driver Code Ends
 
-// User function Template for C
-struct pair getMinMax(long long int arr[], long long int n) {
-    pair z;
-    int minn, maxx;
-    for(int i=0;i<n;i++){
-        minn = min(minn, arr[i]);
-        maxx = max(maxx, arr[i]);
-    }
-    z.min = minn;
-    z.max = maxx;
-    return z;
+
+pair<long long, long long> getMinMax(long long a[], int n) {
+    int min=*min_element(a,a+n);
+    int max=*max_element(a,a+n);
+    return make_pair(min,max);
 }
